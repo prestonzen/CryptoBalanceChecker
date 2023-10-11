@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seed Wallet Checker</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background-image: url('https://cdnb.artstation.com/p/assets/images/images/009/358/213/original/tony-twaine-comp-2-2.gif?1518528958');
+            background-size: cover;
+        }
+
+        .container {
+            max-width: 600px;
+            background-color: rgba(255, 255, 255, 0.6);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 5%;
+        }
+
+        .input-field label {
+            color: black !important;
+        }
+
+        h1, h2 {
+            color: black;
+        }
+
+        h2.center-align {
+            font-size: 1em; /* Make v1.10 smaller */
+        }
+
+        #access_key::placeholder {
+            color: rgb(102, 92, 14) !important; /* Make placeholder text gold */
+            text-align: center;
+            font-size: 2em;
+        }
+
+        .center-elem {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #walletType {
+            width: 100%; /* Increase width of dropdown */
+        }
+    </style>
+</head>
+
+<body class="center-elem">
+    <div class="container">
+        <h1 class="center-align">Seed Wallet Checker</h1>
+        <h2 class="center-align">v1.11</h2> <!-- Incremented version and added comment -->
+        <!-- Comment: Increment version by 0.01 each iteration -->
+        <div class="input-field">
+            <input placeholder="Access Key 🗝" id="access_key" type="password" class="validate">
+        </div>
+        <h2 class="center-align">Wallet Type</h2>
+        <div class="input-field center-elem">
+            <select id="walletType" onchange="updateIcon()">
+                <option value="bitcoin" selected>Bitcoin</option>
+                <option value="ethereum">Ethereum</option>
+                <option value="litecoin">Litecoin</option>
+                <option value="autodetect">Autodetect (coming soon)</option>
+            </select>
+        </div>
+        <h2 class="center-align">Load From File</h2>
+        <div class="center-elem">
+            <button class="btn " onclick="document.getElementById('fileInput').click();">Upload</button> <!-- Changed to button -->
+        </div>
+        <input type="file" id="fileInput" accept=".txt, .csv, .json" style="display:none;"> <!-- Hidden input field -->
+        <div class="input-field">
+            <textarea id="addresses" class="materialize-textarea"></textarea>
+            <label for="addresses">Paste Seed Phrases Here. One per line</label>
+        </div>
+        <div class="center-align">
+            <button class="btn waves-effect waves-light btn-large " onclick="checkBalance()">Check
+                <i class="material-icons right">search</i>
+            </button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems);
+        });
+
+        function checkBalance() {
+            // Logic to check balance
+        }
+
+        function updateIcon() {
+            // Logic to update icon
+        }
+    </script>
+</body>
+
+</html>

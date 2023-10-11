@@ -1,0 +1,277 @@
+[
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "csv",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "csv",
+        "description": "csv",
+        "detail": "csv",
+        "documentation": {}
+    },
+    {
+        "label": "asyncio",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "asyncio",
+        "description": "asyncio",
+        "detail": "asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "Web3",
+        "importPath": "web3",
+        "description": "web3",
+        "isExtraImport": true,
+        "detail": "web3",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPProvider",
+        "importPath": "web3",
+        "description": "web3",
+        "isExtraImport": true,
+        "detail": "web3",
+        "documentation": {}
+    },
+    {
+        "label": "Mnemonic",
+        "importPath": "mnemonic",
+        "description": "mnemonic",
+        "isExtraImport": true,
+        "detail": "mnemonic",
+        "documentation": {}
+    },
+    {
+        "label": "Account",
+        "importPath": "eth_account",
+        "description": "eth_account",
+        "isExtraImport": true,
+        "detail": "eth_account",
+        "documentation": {}
+    },
+    {
+        "label": "Bip44",
+        "importPath": "bip_utils",
+        "description": "bip_utils",
+        "isExtraImport": true,
+        "detail": "bip_utils",
+        "documentation": {}
+    },
+    {
+        "label": "Bip39SeedGenerator",
+        "importPath": "bip_utils",
+        "description": "bip_utils",
+        "isExtraImport": true,
+        "detail": "bip_utils",
+        "documentation": {}
+    },
+    {
+        "label": "Bip44Coins",
+        "importPath": "bip_utils",
+        "description": "bip_utils",
+        "isExtraImport": true,
+        "detail": "bip_utils",
+        "documentation": {}
+    },
+    {
+        "label": "Bip44Changes",
+        "importPath": "bip_utils",
+        "description": "bip_utils",
+        "isExtraImport": true,
+        "detail": "bip_utils",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "httpx",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "httpx",
+        "description": "httpx",
+        "detail": "httpx",
+        "documentation": {}
+    },
+    {
+        "label": "aiofiles.os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "aiofiles.os",
+        "description": "aiofiles.os",
+        "detail": "aiofiles.os",
+        "documentation": {}
+    },
+    {
+        "label": "Enum",
+        "importPath": "enum",
+        "description": "enum",
+        "isExtraImport": true,
+        "detail": "enum",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "Fore",
+        "importPath": "colorama",
+        "description": "colorama",
+        "isExtraImport": true,
+        "detail": "colorama",
+        "documentation": {}
+    },
+    {
+        "label": "Back",
+        "importPath": "colorama",
+        "description": "colorama",
+        "isExtraImport": true,
+        "detail": "colorama",
+        "documentation": {}
+    },
+    {
+        "label": "Style",
+        "importPath": "colorama",
+        "description": "colorama",
+        "isExtraImport": true,
+        "detail": "colorama",
+        "documentation": {}
+    },
+    {
+        "label": "derive_bip44_private_key",
+        "kind": 2,
+        "importPath": "SeedPhraseCheck.SeedPhraseChecker",
+        "description": "SeedPhraseCheck.SeedPhraseChecker",
+        "peekOfCode": "def derive_bip44_private_key(seed_bytes):\n    \"\"\"Derive private key using BIP-44 standard.\"\"\"\n    bip_obj_mst = Bip44.FromSeed(seed_bytes, Bip44Coins.ETHEREUM)\n    bip_obj_acc = bip_obj_mst.Purpose().Coin().Account(0)\n    bip_obj_chain = bip_obj_acc.Change(Bip44Changes.CHAIN_EXT)\n    bip_obj_addr = bip_obj_chain.AddressIndex(0)\n    return bip_obj_addr.PrivateKey().ToBytes()\ndef derive_bip39_private_key(seed_phrase):\n    \"\"\"Derive private key using BIP-39 standard.\"\"\"\n    seed_bytes = Bip39SeedGenerator(seed_phrase).Generate()",
+        "detail": "SeedPhraseCheck.SeedPhraseChecker",
+        "documentation": {}
+    },
+    {
+        "label": "derive_bip39_private_key",
+        "kind": 2,
+        "importPath": "SeedPhraseCheck.SeedPhraseChecker",
+        "description": "SeedPhraseCheck.SeedPhraseChecker",
+        "peekOfCode": "def derive_bip39_private_key(seed_phrase):\n    \"\"\"Derive private key using BIP-39 standard.\"\"\"\n    seed_bytes = Bip39SeedGenerator(seed_phrase).Generate()\n    return derive_bip44_private_key(seed_bytes)\nasync def check_transaction_activity(address):\n    \"\"\"Asynchronously check transaction activity for a given Ethereum address.\"\"\"\n    tx_count = await asyncio.to_thread(w3.eth.getTransactionCount, address)\n    return tx_count > 0\ndef import_txt(filepath):\n    \"\"\"Import seed phrases from a .txt file.\"\"\"",
+        "detail": "SeedPhraseCheck.SeedPhraseChecker",
+        "documentation": {}
+    },
+    {
+        "label": "import_txt",
+        "kind": 2,
+        "importPath": "SeedPhraseCheck.SeedPhraseChecker",
+        "description": "SeedPhraseCheck.SeedPhraseChecker",
+        "peekOfCode": "def import_txt(filepath):\n    \"\"\"Import seed phrases from a .txt file.\"\"\"\n    with open(filepath, 'r') as file:\n        return [line.strip() for line in file]\ndef import_csv(filepath):\n    \"\"\"Import seed phrases from a .csv file.\"\"\"\n    with open(filepath, 'r') as file:\n        reader = csv.reader(file)\n        return [\",\".join(row).replace(\",\", \" \").strip() for row in reader]\ndef import_json(filepath):",
+        "detail": "SeedPhraseCheck.SeedPhraseChecker",
+        "documentation": {}
+    },
+    {
+        "label": "import_csv",
+        "kind": 2,
+        "importPath": "SeedPhraseCheck.SeedPhraseChecker",
+        "description": "SeedPhraseCheck.SeedPhraseChecker",
+        "peekOfCode": "def import_csv(filepath):\n    \"\"\"Import seed phrases from a .csv file.\"\"\"\n    with open(filepath, 'r') as file:\n        reader = csv.reader(file)\n        return [\",\".join(row).replace(\",\", \" \").strip() for row in reader]\ndef import_json(filepath):\n    \"\"\"Import seed phrases from a .json file.\"\"\"\n    with open(filepath, 'r') as file:\n        data = json.load(file)\n        return list(data.values())",
+        "detail": "SeedPhraseCheck.SeedPhraseChecker",
+        "documentation": {}
+    },
+    {
+        "label": "import_json",
+        "kind": 2,
+        "importPath": "SeedPhraseCheck.SeedPhraseChecker",
+        "description": "SeedPhraseCheck.SeedPhraseChecker",
+        "peekOfCode": "def import_json(filepath):\n    \"\"\"Import seed phrases from a .json file.\"\"\"\n    with open(filepath, 'r') as file:\n        data = json.load(file)\n        return list(data.values())\nasync def process_seed(seed):\n    \"\"\"Asynchronously process a seed phrase to derive private keys using multiple BIP standards, fetch associated addresses and balances, and check transaction activity.\"\"\"\n    seed_bytes = Mnemonic(\"english\").ToSeed(seed)\n    for method, bip_func in [(\"BIP-39\", derive_bip39_private_key), \n                             (\"BIP-44\", derive_bip44_private_key)]:",
+        "detail": "SeedPhraseCheck.SeedPhraseChecker",
+        "documentation": {}
+    },
+    {
+        "label": "w3",
+        "kind": 5,
+        "importPath": "SeedPhraseCheck.SeedPhraseChecker",
+        "description": "SeedPhraseCheck.SeedPhraseChecker",
+        "peekOfCode": "w3 = Web3(HTTPProvider('https://mainnet.infura.io/v3/70a8ace7afb54c7fa0de6504c36be15b', {\"timeout\": 60}))\napp_version = 7  # Incremented from previous version\ndef derive_bip44_private_key(seed_bytes):\n    \"\"\"Derive private key using BIP-44 standard.\"\"\"\n    bip_obj_mst = Bip44.FromSeed(seed_bytes, Bip44Coins.ETHEREUM)\n    bip_obj_acc = bip_obj_mst.Purpose().Coin().Account(0)\n    bip_obj_chain = bip_obj_acc.Change(Bip44Changes.CHAIN_EXT)\n    bip_obj_addr = bip_obj_chain.AddressIndex(0)\n    return bip_obj_addr.PrivateKey().ToBytes()\ndef derive_bip39_private_key(seed_phrase):",
+        "detail": "SeedPhraseCheck.SeedPhraseChecker",
+        "documentation": {}
+    },
+    {
+        "label": "app_version",
+        "kind": 5,
+        "importPath": "SeedPhraseCheck.SeedPhraseChecker",
+        "description": "SeedPhraseCheck.SeedPhraseChecker",
+        "peekOfCode": "app_version = 7  # Incremented from previous version\ndef derive_bip44_private_key(seed_bytes):\n    \"\"\"Derive private key using BIP-44 standard.\"\"\"\n    bip_obj_mst = Bip44.FromSeed(seed_bytes, Bip44Coins.ETHEREUM)\n    bip_obj_acc = bip_obj_mst.Purpose().Coin().Account(0)\n    bip_obj_chain = bip_obj_acc.Change(Bip44Changes.CHAIN_EXT)\n    bip_obj_addr = bip_obj_chain.AddressIndex(0)\n    return bip_obj_addr.PrivateKey().ToBytes()\ndef derive_bip39_private_key(seed_phrase):\n    \"\"\"Derive private key using BIP-39 standard.\"\"\"",
+        "detail": "SeedPhraseCheck.SeedPhraseChecker",
+        "documentation": {}
+    },
+    {
+        "label": "seed_phrases",
+        "kind": 5,
+        "importPath": "SeedPhraseCheck.SeedPhraseChecker",
+        "description": "SeedPhraseCheck.SeedPhraseChecker",
+        "peekOfCode": "seed_phrases = []\n# Importing seed phrases from .txt, .csv, and .json files\nseed_phrases.extend(import_txt(\"seedPhrases.txt\"))\nseed_phrases.extend(import_csv(\"seedPhrases.csv\"))\nseed_phrases.extend(import_json(\"seedPhrases.json\"))\n# Running the asynchronous processing\nloop = asyncio.get_event_loop()\ntasks = [process_seed(seed) for seed in seed_phrases]\nloop.run_until_complete(asyncio.gather(*tasks))",
+        "detail": "SeedPhraseCheck.SeedPhraseChecker",
+        "documentation": {}
+    },
+    {
+        "label": "loop",
+        "kind": 5,
+        "importPath": "SeedPhraseCheck.SeedPhraseChecker",
+        "description": "SeedPhraseCheck.SeedPhraseChecker",
+        "peekOfCode": "loop = asyncio.get_event_loop()\ntasks = [process_seed(seed) for seed in seed_phrases]\nloop.run_until_complete(asyncio.gather(*tasks))",
+        "detail": "SeedPhraseCheck.SeedPhraseChecker",
+        "documentation": {}
+    },
+    {
+        "label": "tasks",
+        "kind": 5,
+        "importPath": "SeedPhraseCheck.SeedPhraseChecker",
+        "description": "SeedPhraseCheck.SeedPhraseChecker",
+        "peekOfCode": "tasks = [process_seed(seed) for seed in seed_phrases]\nloop.run_until_complete(asyncio.gather(*tasks))",
+        "detail": "SeedPhraseCheck.SeedPhraseChecker",
+        "documentation": {}
+    },
+    {
+        "label": "FileType",
+        "kind": 6,
+        "importPath": "BTCBalanceCheckerBackend",
+        "description": "BTCBalanceCheckerBackend",
+        "peekOfCode": "class FileType(Enum):\n    JSON_ARRAY = 1\n    CSV = 2\nMAX_ADDRESSES_PER_REQUEST = 45\nasync def doCheck(path, output, type, continuefrom):\n    for input in os.listdir(path):\n        f = os.path.join(path, input)\n        async with aiofiles.open(f, 'r') as file:\n            if type == FileType.CSV:\n                content = await file.read()",
+        "detail": "BTCBalanceCheckerBackend",
+        "documentation": {}
+    },
+    {
+        "label": "statisticalize",
+        "kind": 2,
+        "importPath": "BTCBalanceCheckerBackend",
+        "description": "BTCBalanceCheckerBackend",
+        "peekOfCode": "def statisticalize(path, output, time):\n    lenwins = 0\n    lenlosses = 0\n    for file in os.listdir(path):\n        filepath = os.path.join(path + file)\n        losses = open(filepath, 'r')\n        lenlosses = lenlosses + len(losses.readlines())\n        print(f'file {filepath} len {len(losses.readlines())}')\n        losses.close()\n    wins = open(output, 'r')",
+        "detail": "BTCBalanceCheckerBackend",
+        "documentation": {}
+    },
+    {
+        "label": "MAX_ADDRESSES_PER_REQUEST",
+        "kind": 5,
+        "importPath": "BTCBalanceCheckerBackend",
+        "description": "BTCBalanceCheckerBackend",
+        "peekOfCode": "MAX_ADDRESSES_PER_REQUEST = 45\nasync def doCheck(path, output, type, continuefrom):\n    for input in os.listdir(path):\n        f = os.path.join(path, input)\n        async with aiofiles.open(f, 'r') as file:\n            if type == FileType.CSV:\n                content = await file.read()\n                lines = content.splitlines()\n                for line in lines:\n                    keys = line.split(',')",
+        "detail": "BTCBalanceCheckerBackend",
+        "documentation": {}
+    }
+]
